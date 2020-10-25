@@ -5,8 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Calculator_on_WPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="700">
-    <Grid>
+        Title="Калькулятор " Height="400" Width="500" WindowStyle="ToolWindow">
+    
+    <!-- Главный контейнер -->
+    <Grid x:Name="MainContainer" Background="Gray">
+        <!-- Разметка строк -->
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
         
+        <!-- Разметка колонн -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        
+        <!-- Разметка элементов по атрибутам Grid.Row и Grid.Column -->
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="Хуй"/>
     </Grid>
 </Window>
