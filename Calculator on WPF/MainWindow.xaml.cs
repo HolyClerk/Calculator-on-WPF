@@ -39,6 +39,18 @@ namespace Calculator_on_WPF
 
         private void ButtonClick(object sender, RoutedEventArgs e)
         {
+            /*
+             * Мы берем объект, который идет на основе класса RoutedEventArgs, преобразовываем его к классу
+             * button. Далее берется OriginalSource и его Content. И всё это присваивается к переменной enteredButtons.
+             * За математические действия калькулятора отвечает метод Compute, который преобразовывает строку в решение
+             */
+            string enteredButton = (string)((Button)e.OriginalSource).Content;
+            string[] mathSymbols = new string[4]
+                {
+                    "+", "-", "/", "*"
+                };
+
+            // Проверка на длинну и решеный пример
             if (textLabel_1.Text.Length == 35) { textLabel_1.FontSize = 13; }
 
             if (isSolved == true)
@@ -47,24 +59,35 @@ namespace Calculator_on_WPF
                 isSolved = false;
             }
 
-            // Мы берем объект, который идет на основе класса RoutedEventArgs, преобразовываем его к классу
-            // button. Далее берется OriginalSource и его Content. И всё это присваивается к переменной enteredButtons.
-            string enteredButton = (string)((Button)e.OriginalSource).Content;
-
-            if (enteredButton == "Clear") 
-                textLabel_1.Text = ""; 
+            // Проверка нажатий кнопок
+            if (enteredButton == "Clear")
+            {
+                textLabel_1.Text = "";
+            }
             else if (enteredButton == "=")
             {
-                // Метод Compute отвечает за преобразование текста в математическое действие
                 string value = new DataTable().Compute(textLabel_1.Text, null).ToString();
-                textLabel_1.Text += ("\n = " + value);
 
+                textLabel_1.Text += ("\n = " + value);
                 isSolved = true;
             }
-            else  
-                textLabel_1.Text += enteredButton; 
+            else
+            {
+                // int textLength = textLabel_1.Text.Length;
+                int mathSymbolsLength = mathSymbols.Length;
+
+                // string converted = textLabel_1.Text.ToString();
+                string text = enteredButton;
+
+                // if (converted[textLength].ToString() == converted[textLength-1].ToString())
+                for (int i = 0; i < mathSymbolsLength; i++)
+                {
+                    if (enteredButton == mathSymbols[i])
+                        text = " " + enteredButton + " ";
+                }
+
+                textLabel_1.Text += text;
+            }
         }
-
-
     }
 }
